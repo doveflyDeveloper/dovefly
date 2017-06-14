@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dovefly.module.test.dao.TestMapper">
+  <resultMap id="BaseResultMap" type="cn.dovefly.module.test.entity.Test">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="test_name" jdbcType="VARCHAR" property="testName" />
+    <result column="test_age" jdbcType="INTEGER" property="testAge" />
+    <result column="test_point" jdbcType="DECIMAL" property="testPoint" />
+    <result column="test_date" jdbcType="DATE" property="testDate" />
+    <result column="test_datetime" jdbcType="TIMESTAMP" property="testDatetime" />
+    <result column="test_timestamp" jdbcType="TIMESTAMP" property="testTimestamp" />
+    <result column="test_status" jdbcType="BIT" property="testStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, test_name, test_age, test_point, test_date, test_datetime, test_timestamp, test_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_test
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_test
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.dovefly.module.test.entity.Test">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_test (id, test_name, test_age, 
+      test_point, test_date, test_datetime, 
+      test_timestamp, test_status)
+    values (#{id,jdbcType=INTEGER}, #{testName,jdbcType=VARCHAR}, #{testAge,jdbcType=INTEGER}, 
+      #{testPoint,jdbcType=DECIMAL}, #{testDate,jdbcType=DATE}, #{testDatetime,jdbcType=TIMESTAMP}, 
+      #{testTimestamp,jdbcType=TIMESTAMP}, #{testStatus,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.dovefly.module.test.entity.Test">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_test
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="testName != null">
+        test_name,
+      </if>
+      <if test="testAge != null">
+        test_age,
+      </if>
+      <if test="testPoint != null">
+        test_point,
+      </if>
+      <if test="testDate != null">
+        test_date,
+      </if>
+      <if test="testDatetime != null">
+        test_datetime,
+      </if>
+      <if test="testTimestamp != null">
+        test_timestamp,
+      </if>
+      <if test="testStatus != null">
+        test_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=INTEGER},
+      <if test="testName != null">
+        #{testName,jdbcType=VARCHAR},
+      </if>
+      <if test="testAge != null">
+        #{testAge,jdbcType=INTEGER},
+      </if>
+      <if test="testPoint != null">
+        #{testPoint,jdbcType=DECIMAL},
+      </if>
+      <if test="testDate != null">
+        #{testDate,jdbcType=DATE},
+      </if>
+      <if test="testDatetime != null">
+        #{testDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="testTimestamp != null">
+        #{testTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="testStatus != null">
+        #{testStatus,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.dovefly.module.test.entity.Test">
+    update t_test
+    <set>
+      <if test="testName != null">
+        test_name = #{testName,jdbcType=VARCHAR},
+      </if>
+      <if test="testAge != null">
+        test_age = #{testAge,jdbcType=INTEGER},
+      </if>
+      <if test="testPoint != null">
+        test_point = #{testPoint,jdbcType=DECIMAL},
+      </if>
+      <if test="testDate != null">
+        test_date = #{testDate,jdbcType=DATE},
+      </if>
+      <if test="testDatetime != null">
+        test_datetime = #{testDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="testTimestamp != null">
+        test_timestamp = #{testTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="testStatus != null">
+        test_status = #{testStatus,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.dovefly.module.test.entity.Test">
+    update t_test
+    set test_name = #{testName,jdbcType=VARCHAR},
+      test_age = #{testAge,jdbcType=INTEGER},
+      test_point = #{testPoint,jdbcType=DECIMAL},
+      test_date = #{testDate,jdbcType=DATE},
+      test_datetime = #{testDatetime,jdbcType=TIMESTAMP},
+      test_timestamp = #{testTimestamp,jdbcType=TIMESTAMP},
+      test_status = #{testStatus,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

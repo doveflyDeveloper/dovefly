@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-    <name>dovefly-admin Maven Webapp</name>
+    <name>dovefly-service Maven service</name>
     <url>http://maven.apache.org</url>
     <modelVersion>4.0.0</modelVersion>
 
@@ -11,19 +11,19 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>dovefly-admin</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <groupId>cn.dovefly</groupId>
+    <artifactId>dovefly-service</artifactId>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
             <groupId>cn.dovefly</groupId>
-            <artifactId>dovefly-service</artifactId>
+            <artifactId>dovefly-core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
     <build>
-        <finalName>dovefly-admin</finalName>
+        <finalName>dovefly-service</finalName>
     </build>
 </project>
