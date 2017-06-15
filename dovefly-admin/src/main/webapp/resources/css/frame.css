@@ -1,0 +1,228 @@
+.frame_left_bg {
+	background-image: url("../images/frame_left_bg.gif");
+}
+
+.frame_bottom_bg {
+	background-image: url("../images/frame_bottom_bg.gif");
+}
+
+.frame_right_bg {
+	background-image: url("../images/frame_right_bg.gif");
+}
+
+.bottom_left_corner {
+	display: block;
+	width: 17px;
+	height: 17px;
+	background-image: url("../images/bottom_left_corner.gif");
+	background-repeat: no-repeat;
+}
+
+.bottom_right_corner {
+	display: block;
+	width: 16px;
+	height: 17px;
+	background-image: url("../images/bottom_right_corner.gif");
+	background-repeat: no-repeat;
+}
+
+#nav_width_limit_div {
+	width: 600px;
+	height: 31px;
+	overflow: hidden;
+}
+
+#nav_contain_div {
+	width: 3000px;
+}
+
+.nav_left {
+	display: block;
+	width: 17px;
+	height: 29px;
+	background-image: url("../images/nav_bg_L.gif");
+	background-repeat: no-repeat;
+}
+
+.nav_right {
+	display: block;
+	width: 16px;
+	height: 29px;
+	background-image: url("../images/nav_bg_R.gif");
+	background-repeat: no-repeat;
+}
+
+.nav_bg {
+	background-image: url("../images/nav-bg.gif");
+	background-repeat: repeat-x;
+}
+
+ul.nav {
+	margin: 0;
+	padding: 0;
+	float: left;
+	height: 31px;
+	list-style-type: none;
+	line-height: 31px;
+}
+
+ul.nav li {
+	margin: 0;
+	padding: 0;
+	float: left;
+	height: 31px;
+	cursor: default;
+	line-height: 31px;
+	font-size: 12px;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+ul.nav li.left {
+	width: 10px;
+	background-image: url("../images/nav-left.png");
+	background-position: 0% 0%;
+	background-repeat: no-repeat;
+}
+
+ul.nav li.center {
+	background-image: url("../images/nav-center.png");
+	background-position: 0% 0%;
+	background-repeat: repeat-x;
+}
+
+ul.nav li.right {
+	width: 10px;
+	background-image: url("../images/nav-right.png");
+	background-position: 0% 0%;
+	background-repeat: no-repeat;
+}
+
+ul.nav:hover {
+	list-style-type: none;
+	margin: 0;
+	color: #000000;
+	height: 31px;
+	line-height: 31px;
+	float: left;
+}
+
+ul.nav:hover li {
+	height: 31px;
+	float: left;
+	line-height: 31px;
+	cursor: default;
+	text-decoration: none;
+}
+
+ul.nav:hover li.left {
+	width: 10px;
+	background-image: url("../images/nav-left.png");
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+}
+
+ul.nav:hover li.center {
+	background-image: url("../images/nav-center.png");
+	background-position: 50% 50%;
+	background-repeat: repeat-x;
+}
+
+ul.nav:hover li.right {
+	width: 10px;
+	background-image: url("../images/nav-right.png");
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+}
+
+#curTab {
+	list-style-type: none;
+	margin: 0;
+	color: #000000;
+	height: 31px;
+	line-height: 31px;
+	font-size: 12px;
+	font-weight: bold;
+	float: left;
+}
+
+#curTab li {
+	height: 31px;
+	float: left;
+	line-height: 31px;
+	cursor: default;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#curTab li.left {
+	width: 10px;
+	background-image: url("../images/nav-left.png");
+	background-position: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#curTab li.center {
+	background-image: url("../images/nav-center.png");
+	background-position: 100% 100%;
+	background-repeat: repeat-x;
+}
+
+#curTab li.right {
+	width: 10px;
+	background-image: url("../images/nav-right.png");
+	background-position: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.closeTab {
+	width: 9px;
+	height: 8px;
+	display: block;
+	margin-left: 10px;
+	display: inline-block;
+	vertical-align: middle;
+	background-image: url("../images/close-tab.gif");
+	background-repeat: no-repeat;
+	background-position: left;
+}
+
+.closeTab:hover {
+	background-position: right;
+}
+
+.scroll_left {
+	width: 18px;
+	height: 18px;
+	background-image: url("../images/scroll.png");
+	background-repeat: no-repeat;
+	background-position: top left;
+}
+
+.scroll_left:hover {
+	background-position: left bottom;
+}
+
+.scroll_right {
+	width: 18px;
+	height: 18px;
+	background-image: url("../images/scroll.png");
+	background-repeat: no-repeat;
+	background-position: top right;
+}
+
+.scroll_right:hover {
+	background-position: right bottom;
+}
+
+#refreshTab {
+	width: 18px;
+	height: 18px;
+	background-image: url("../images/refresh.png");
+	background-repeat: no-repeat;
+	background-position: right;
+}
+
+#refreshTab:hover {
+	background-position: left;
+}

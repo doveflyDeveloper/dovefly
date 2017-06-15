@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workbook> 
+  <worksheet name="超市"> 
+    <section startRow="0" endRow="0"/>  
+    <loop startRow="1" endRow="1" items="beans" var="bean" varType="com.deertt.module.sys.market.vo"> 
+      <section startRow="1" endRow="1"> 
+        <mapping row="1" col="0">bean.city_id</mapping>
+        <mapping row="1" col="1">bean.city_name</mapping>
+        <mapping row="1" col="2">bean.shopkeeper_id</mapping>
+        <mapping row="1" col="3">bean.shopkeeper_name</mapping>
+        <mapping row="1" col="4">bean.market_name</mapping>
+        <mapping row="1" col="5">bean.market_desc</mapping>
+        <mapping row="1" col="6">bean.market_area</mapping>
+        <mapping row="1" col="7">bean.market_status</mapping>
+        <mapping row="1" col="8">bean.market_sort</mapping>
+        <mapping row="1" col="9">bean.start_amount</mapping>
+        <mapping row="1" col="10">bean.balance_amount</mapping>
+        <mapping row="1" col="11">bean.locked_amount</mapping>
+        <mapping row="1" col="12">bean.halfway_amount</mapping>
+        <mapping row="1" col="13">bean.overdraft_amount</mapping>
+        <mapping row="1" col="14">bean.interest_amount</mapping>
+        <mapping row="1" col="15">bean.remark</mapping>
+      </section>  
+      <loopbreakcondition> 
+        <rowcheck offset="0"> 
+          <cellcheck offset="0"/> 
+        </rowcheck> 
+      </loopbreakcondition> 
+    </loop> 
+  </worksheet> 
+</workbook>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workbook> 
+  <worksheet name="对账信息"> 
+    <section startRow="0" endRow="0"/>  
+    <loop startRow="1" endRow="1" items="beans" var="bean" varType="com.deertt.module.pay.checkbill.vo.CheckBillVo"> 
+      <section startRow="1" endRow="1"> 
+        <mapping row="1" col="0">bean.pay_table_name</mapping>
+        <mapping row="1" col="1">bean.pay_bill_id</mapping>
+        <mapping row="1" col="2">bean.bill_type</mapping>
+        <mapping row="1" col="3">bean.bill_table_name</mapping>
+        <mapping row="1" col="4">bean.bill_id</mapping>
+        <mapping row="1" col="5">bean.bill_code</mapping>
+        <mapping row="1" col="6">bean.check_time</mapping>
+        <mapping row="1" col="7">bean.check_msg</mapping>
+        <mapping row="1" col="8">bean.check_status</mapping>
+        <mapping row="1" col="9">bean.deal_status</mapping>
+      </section>  
+      <loopbreakcondition> 
+        <rowcheck offset="0"> 
+          <cellcheck offset="0"/> 
+        </rowcheck> 
+      </loopbreakcondition> 
+    </loop> 
+  </worksheet> 
+</workbook>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+    http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+	<!-- 定义函数版本 -->
+	<tlib-version>1.0</tlib-version>
+	<!-- 定义函数名称 -->
+	<short-name>dvf</short-name>
+	<uri>http://number.deertt.com/field</uri>
+	<!-- 定义第一个函数 -->
+	<function>
+		<!-- 定义第一个函数：reverse -->
+		<name>commafy</name>
+		<!-- 定义函数处理类 -->
+		<function-class>com.deertt.frame.base.web.el.NumberFormatEL</function-class>
+		<!-- 定义函数的对应方法 -->
+		<function-signature>java.lang.String commafy(java.lang.Object)</function-signature>
+	</function>
+	<function>
+		<!-- 定义第一个函数：reverse -->
+		<name>currency</name>
+		<!-- 定义函数处理类 -->
+		<function-class>com.deertt.frame.base.web.el.NumberFormatEL</function-class>
+		<!-- 定义函数的对应方法 -->
+		<function-signature>java.lang.String currency(java.lang.Object)</function-signature>
+	</function>
+	<function>
+		<!-- 定义第一个函数：reverse -->
+		<name>currency_CN</name>
+		<!-- 定义函数处理类 -->
+		<function-class>com.deertt.frame.base.web.el.NumberFormatEL</function-class>
+		<!-- 定义函数的对应方法 -->
+		<function-signature>java.lang.String currency_CN(java.lang.Object)</function-signature>
+	</function>
+	<function>
+		<!-- 定义第一个函数：reverse -->
+		<name>currency_US</name>
+		<!-- 定义函数处理类 -->
+		<function-class>com.deertt.frame.base.web.el.NumberFormatEL</function-class>
+		<!-- 定义函数的对应方法 -->
+		<function-signature>java.lang.String currency_US(java.lang.Object)</function-signature>
+	</function>
+</taglib>

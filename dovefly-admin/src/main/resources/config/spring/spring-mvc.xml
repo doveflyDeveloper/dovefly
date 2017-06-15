@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:mvc="http://www.springframework.org/schema/mvc" 
+       xmlns:p="http://www.springframework.org/schema/p" 
+       xmlns:context="http://www.springframework.org/schema/context" 
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+           http://www.springframework.org/schema/context 
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd 
+           http://www.springframework.org/schema/mvc 
+           http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd"
+       default-autowire="byName">
+
+	<!-- 自动搜索且只搜索@Controller的类 -->
+	<context:component-scan base-package="com.deertt" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	
+	<!-- <mvc:annotation-driven/>会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 两个bean -->
+	<mvc:annotation-driven conversion-service="conversionService"/>
+	
+	<!-- Controller封装VO对象时，特殊类型（日期，数字）的处理 -->
+	<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean"> 
+		<property name="converters"> 
+			<list>
+				<bean class="com.deertt.frame.base.web.converter.TimestampConverter" />
+				<bean class="com.deertt.frame.base.web.converter.SqlDateConverter" />
+				<bean class="com.deertt.frame.base.web.converter.NumberConverter" />
+			</list> 
+		</property> 
+	</bean> 
+	
+	<!-- 容器默认的DefaultServletHandler处理 所有静态内容与无RequestMapping处理的URL-->
+	<mvc:default-servlet-handler/>
+	<!-- 默认访问跳转到登录页面 -->
+	<!-- 
+	<mvc:view-controller path="/" view-name="forward:/login" />
+	 -->
+	<!-- 静态资源文件的处理--> 
+	<!-- 
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/js/**" location="/js/"/>
+	<mvc:resources mapping="/css/**" location="/css/"/>
+	<mvc:resources mapping="/images/**" location="/images/"/>
+	<mvc:resources mapping="/**/*.html" location="/"/>
+	<mvc:resources mapping="/**/*.htm" location="/"/>
+	<mvc:resources mapping="/**/*.js" location="/"/>
+	<mvc:resources mapping="/**/*.css" location="/"/>
+	<mvc:resources mapping="/**/*.jpg" location="/"/>
+	<mvc:resources mapping="/**/*.gif" location="/"/>
+	<mvc:resources mapping="/**/*.png" location="/"/>
+	<mvc:resources mapping="/**/*.bmp" location="/"/>
+	<mvc:resources mapping="/**/*.flv" location="/"/>
+	 -->
+	
+	<!-- 
+		注册拦截器
+		如果不定义mappingURL，则默认拦截所有对Controller的请求 ;    
+		可以使用正则表达式对url进行匹配，从而更细粒度的进行拦截(.*/entryOrJsonController\.do\?action=reg.*);   
+	 -->
+	<mvc:interceptors>
+		<!-- 自定义拦截器，可在控制台打印请求路径（开发使用） -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.deertt.frame.base.web.interceptor.CommonInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!-- 定义JSP文件的位置 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+
+	<!-- 处理文件上传的请求 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	 	<property name="defaultEncoding" value="utf-8"/>
+		<property name="maxUploadSize" value="10485760"/>
+	</bean>
+
+	<!-- JSON数据处理 -->
+	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>application/json;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+
+    <!-- 将Controller抛出的异常转到特定View -->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.apache.shiro.authz.UnauthorizedException">jsp/common/error/lacksPermission</prop>
+                <prop key="java.lang.RuntimeException">jsp/common/error/500</prop>
+                <prop key="java.lang.Exception">jsp/common/error/500</prop>
+                <prop key="java.lang.Throwable">jsp/common/error/500</prop>
+            </props>
+        </property>
+        <property name="statusCodes">
+            <props>
+                <prop key="jsp/common/error/500">500</prop>
+                <prop key="jsp/common/error/404">404</prop>
+            </props>
+        </property>
+        <!-- 设置日志输出级别，不定义则默认不输出警告等错误日志信息 -->
+        <property name="warnLogCategory" value="WARN"></property>
+        <!-- 默认错误页面，当找不到上面mappings中指定的异常对应视图时，使用本默认配置 -->
+        <property name="defaultErrorView" value="jsp/common/error/500"></property>
+        <!-- 默认HTTP状态码 -->
+        <property name="defaultStatusCode" value="500"></property>
+    </bean>
+
+	<!-- 支持 Shiro对Controller的方法级AOP安全控制。 -->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	
+	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+	
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+    	<property name="securityManager" ref="securityManager"/>
+	</bean>
+</beans>

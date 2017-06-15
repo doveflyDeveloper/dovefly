@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workbook> 
+  <worksheet name="附件信息"> 
+    <section startRow="0" endRow="0"/>  
+    <loop startRow="1" endRow="1" items="beans" var="bean" varType="com.deertt.module.tcommonfile.vo.TCommonFileVo"> 
+      <section startRow="1" endRow="1"> 
+        <mapping row="1" col="0">bean.owner_table_name</mapping>
+        <mapping row="1" col="1">bean.owner_bill_id</mapping>
+        <mapping row="1" col="2">bean.owner_column_name</mapping>
+        <mapping row="1" col="3">bean.file_name</mapping>
+        <mapping row="1" col="4">bean.file_url</mapping>
+        <mapping row="1" col="5">bean.file_type</mapping>
+        <mapping row="1" col="6">bean.file_size</mapping>
+        <mapping row="1" col="7">bean.remark</mapping>
+      </section>  
+      <loopbreakcondition> 
+        <rowcheck offset="0"> 
+          <cellcheck offset="0"/> 
+        </rowcheck> 
+      </loopbreakcondition> 
+    </loop> 
+  </worksheet> 
+</workbook>

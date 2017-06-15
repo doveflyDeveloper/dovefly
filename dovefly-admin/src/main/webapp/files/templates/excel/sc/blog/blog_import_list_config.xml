@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workbook> 
+  <worksheet name="资讯文章"> 
+    <section startRow="0" endRow="0"/>  
+    <loop startRow="1" endRow="1" items="beans" var="bean" varType="com.deertt.module.sc.blog.vo.BlogVo"> 
+      <section startRow="1" endRow="1"> 
+        <mapping row="1" col="0">bean.city_id</mapping>
+        <mapping row="1" col="1">bean.school_id</mapping>
+        <mapping row="1" col="2">bean.title</mapping>
+        <mapping row="1" col="3">bean.type</mapping>
+        <mapping row="1" col="4">bean.description</mapping>
+        <mapping row="1" col="5">bean.issue_status</mapping>
+        <mapping row="1" col="6">bean.issue_time</mapping>
+        <mapping row="1" col="7">bean.issue_to</mapping>
+      </section>  
+      <loopbreakcondition> 
+        <rowcheck offset="0"> 
+          <cellcheck offset="0"/> 
+        </rowcheck> 
+      </loopbreakcondition> 
+    </loop> 
+  </worksheet> 
+</workbook>
