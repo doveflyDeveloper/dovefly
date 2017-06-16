@@ -27,29 +27,37 @@
 	</bean>
 	
 	<!--定义数据源 -->
-	<bean id="dataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource" lazy-init="true">
-		<property name="driver" value="${jdbc.driverClassName}" />
-		<property name="driverUrl" value="${jdbc.url}" />
-		<property name="user" value="${jdbc.username}" />
-		<property name="password" value="${jdbc.password}" />
-		<property name="alias" value="${jdbc.alias}" />
-		<property name="minimumConnectionCount" value="${jdbc.minimumConnectionCount}" />
-		<property name="maximumConnectionCount" value="${jdbc.maximumConnectionCount}" />
-		<!-- 
-		<property name="houseKeepingSleepTime" value="${jdbc.houseKeepingSleepTime}" />
-		<property name="maximumActiveTime" value="${jdbc.maximumActiveTime}" />
-		<property name="maximumConnectionLifetime" value="${jdbc.maximumConnectionLifetime}" />
-		<property name="overloadWithoutRefusalLifetime" value="${jdbc.overloadWithoutRefusalLifetime}" />
-		<property name="recentlyStartedThreshold" value="${jdbc.recentlyStartedThreshold}" />
-		 -->
-		<property name="houseKeepingTestSql" value="${jdbc.houseKeepingTestSql}" />
-		<property name="prototypeCount" value="${jdbc.prototypeCount}" />
-		<property name="simultaneousBuildThrottle" value="${jdbc.simultaneousBuildThrottle}" />
-		<property name="statistics" value="${jdbc.statistics}" />
-		<property name="testBeforeUse" value="${jdbc.testBeforeUse}" />
-		<property name="testAfterUse" value="${jdbc.testAfterUse}" />
-		<property name="trace" value="${jdbc.trace}" />
-		<property name="verbose" value="${jdbc.verbose}" />
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+		<!-- 数据库基本信息配置 -->
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		<property name="driverClassName" value="${jdbc.driver}"/>
+		<!-- 监控统计用的filter:stat -->
+		<property name="filters" value="${jdbc.filters}"/>
+		<!-- 最大并发连接数 -->
+		<property name="maxActive" value="${jdbc.maxActive}"/>
+		<!-- 初始化连接数量 -->
+		<property name="initialSize" value="${jdbc.initialSize}"/>
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="${jdbc.maxWait}"/>
+		<!-- 最小空闲连接数 -->
+		<property name="minIdle" value="${jdbc.minIdle}"/>
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis}"/>
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="${jdbc.minEvictableIdleTimeMillis}"/>
+		<property name="validationQuery" value="${jdbc.validationQuery}"/>
+		<property name="testWhileIdle" value="${jdbc.testWhileIdle}"/>
+		<property name="testOnBorrow" value="${jdbc.testOnBorrow}"/>
+		<property name="testOnReturn" value="${jdbc.testOnReturn}"/>
+		<property name="maxOpenPreparedStatements" value="${jdbc.maxOpenPreparedStatements}"/>
+		<!-- 打开 removeAbandoned 功能 -->
+		<property name="removeAbandoned" value="${jdbc.removeAbandoned}"/>
+		<!-- 1800 秒，也就是 30 分钟 -->
+		<property name="removeAbandonedTimeout" value="${jdbc.removeAbandonedTimeout}"/>
+		<!-- 关闭 abanded 连接时输出错误日志 -->
+		<property name="logAbandoned" value="${jdbc.logAbandoned}"/>
 	</bean>
 	
 	<!--定义jdbcTemplate -->
