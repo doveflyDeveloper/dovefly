@@ -1,1 +1,0 @@
-<div id="weixin_qr_code"><img src="${qrcode }" style="width:200px;height:200px;"/></div>

@@ -12,7 +12,6 @@
     <version>0.0.1-SNAPSHOT</version>
 
     <modules>
-        <module>dovefly-admin</module>
         <module>dovefly-service</module>
         <module>dovefly-core</module>
         <module>dovefly-wx-app</module>

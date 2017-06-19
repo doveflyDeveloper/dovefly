@@ -1,5 +1,0 @@
-URL a = ClassLoader.getSystemResource("");
-String path = a.getPath();
-System.out.println(path);
-path = path.substring(1, path.length() - web_inf_classes.length());
-System.out.println(path);
